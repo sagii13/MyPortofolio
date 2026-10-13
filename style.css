@@ -1,0 +1,882 @@
+/* ========================================================
+   CODE YOUR PORTFOLIO - STYLESHEET
+   Materi CSS Dasar: Colors, Typography, Box Model, Flexbox
+   ======================================================== */
+
+/* --- 1. CSS VARIABLES & RESET --- */
+/* :root adalah selektor tertinggi (akar dokumen HTML) tempat menyimpan variabel global */
+:root {
+  /* Variabel warna utama (biru terang) untuk tombol dan aksen */
+  --primary: #0284c7;
+  /* Variabel warna saat kursor menyorot elemen utama (biru lebih gelap) */
+  --primary-hover: #0369a1;
+  /* Variabel warna teks judul utama (hitam pekat kebiruan) */
+  --text-dark: #0f172a;
+  /* Variabel warna teks umum isi paragraf (abu-abu gelap agar nyaman dibaca) */
+  --text-body: #334155;
+  /* Variabel warna teks sekunder / subjudul (abu-abu pudar) */
+  --text-muted: #64748b;
+  /* Variabel warna latar belakang putih bersih */
+  --bg-white: #ffffff;
+  /* Variabel warna latar belakang abu-abu sangat muda untuk variasi seksi */
+  --bg-light: #f8fafc;
+  /* Variabel warna garis tepi / border halus */
+  --border-color: #e2e8f0;
+  /* Variabel warna dasar kartu konten */
+  --card-bg: #ffffff;
+  /* Variabel efek bayangan default untuk memberi efek dimensi mengambang */
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  /* Variabel efek bayangan lebih tebal saat kartu disorot kursor */
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  /* Variabel lengkungan sudut elemen kotak sebesar 8 piksel */
+  --radius: 8px;
+  /* Variabel durasi animasi transisi selama 0.2 detik secara halus */
+  --transition: all 0.2s ease-in-out;
+}
+
+/* * adalah selektor universal: menerapkan aturan ke seluruh tag HTML tanpa terkecuali */
+* {
+  /* Menghapus jarak luar (margin) bawaan dari browser */
+  margin: 0;
+  /* Menghapus bantalan dalam (padding) bawaan dari browser */
+  padding: 0;
+  /* Memastikan padding dan border dihitung di dalam ukuran lebar total elemen */
+  box-sizing: border-box;
+}
+
+/* Mengatur karakteristik dasar seluruh dokumen HTML */
+html {
+  /* Membuat pergerakan scroll halaman meluncur secara halus saat anchor link diklik */
+  scroll-behavior: smooth;
+  /* Menentukan susunan jenis huruf (font) standar sistem modern */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Menentukan warna default seluruh teks */
+  color: var(--text-body);
+  /* Menentukan warna latar belakang dasar seluruh halaman */
+  background-color: var(--bg-white);
+  /* Mengatur jarak spasi tinggi antar-baris teks agar nyaman dibaca */
+  line-height: 1.6;
+}
+
+/* --- 2. TYPOGRAPHY & COMMON ELEMENTS --- */
+/* Mengatur semua tag judul level 1, 2, dan 3 */
+h1, h2, h3 {
+  /* Memberikan warna teks judul yang tegas dan gelap */
+  color: var(--text-dark);
+  /* Mengatur kerapatan tinggi baris khusus judul */
+  line-height: 1.25;
+}
+
+/* Mengatur seluruh tag tautan (link) */
+a {
+  /* Memberi warna teks tautan menggunakan warna primer */
+  color: var(--primary);
+  /* Menghilangkan garis bawah bawaan pada teks tautan */
+  text-decoration: none;
+  /* Memberikan transisi halus saat terjadi perubahan warna */
+  transition: var(--transition);
+}
+
+/* Mengatur tautan saat kursor mouse melayang di atasnya */
+a:hover {
+  /* Mengubah warna teks link menjadi biru lebih gelap */
+  color: var(--primary-hover);
+}
+
+/* Mengatur perilaku default semua tag gambar */
+img {
+  /* Membatasi lebar gambar maksimal 100% dari wadahnya agar tidak meluber */
+  max-width: 100%;
+  /* Menghilangkan celah kosong bawah bawaan elemen gambar */
+  display: block;
+}
+
+/* Wadah pembungkus konten utama agar posisinya rapi di tengah */
+.container {
+  /* Lebar wadah mengambil 90% dari lebar layar */
+  width: 90%;
+  /* Membatasi lebar maksimal wadah tidak melebihi 1080 piksel */
+  max-width: 1080px;
+  /* Menempatkan posisi wadah tepat di tengah horizontal layar */
+  margin: 0 auto;
+}
+
+/* --- 3. BUTTONS --- */
+/* Kelas dasar untuk seluruh tombol */
+.btn {
+  /* Mengizinkan tombol menerima pengaturan margin, padding, dan lebar seperti kotak */
+  display: inline-block;
+  /* Memberi jarak bantalan dalam: 10px atas-bawah dan 22px kiri-kanan */
+  padding: 10px 22px;
+  /* Membuat sudut tombol membulat sebesar nilai variabel radius */
+  border-radius: var(--radius);
+  /* Mengatur ketebalan huruf tombol menjadi semi-tebal */
+  font-weight: 600;
+  /* Mengatur ukuran teks tombol */
+  font-size: 0.95rem;
+  /* Mengubah ikon kursor mouse menjadi telunjuk saat menyentuh tombol */
+  cursor: pointer;
+  /* Menghapus garis batas awal tombol dengan border transparan */
+  border: 1px solid transparent;
+  /* Memberi animasi perubahan warna yang halus saat tombol disorot */
+  transition: var(--transition);
+  /* Meratakan teks tombol tepat di posisi tengah */
+  text-align: center;
+}
+
+/* Varian tombol utama berwarna biru pekat */
+.btn-primary {
+  /* Memberi warna latar belakang biru primer */
+  background-color: var(--primary);
+  /* Memberi warna teks tombol menjadi putih */
+  color: #ffffff;
+}
+
+/* Efek saat tombol utama disorot kursor mouse */
+.btn-primary:hover {
+  /* Mengubah warna latar tombol menjadi biru lebih gelap */
+  background-color: var(--primary-hover);
+  /* Mempertahankan warna teks tetap putih */
+  color: #ffffff;
+}
+
+/* Varian tombol dengan garis tepi luar (outline) */
+.btn-outline {
+  /* Memberikan garis tepi berwarna biru primer */
+  border-color: var(--primary);
+  /* Memberikan warna teks biru primer */
+  color: var(--primary);
+  /* Membuat latar belakang tombol transparan */
+  background-color: transparent;
+}
+
+/* Efek saat tombol outline disorot kursor mouse */
+.btn-outline:hover {
+  /* Mengubah latar tombol menjadi warna biru primer */
+  background-color: var(--primary);
+  /* Mengubah warna teks menjadi putih */
+  color: #ffffff;
+}
+
+/* Modifikasi tombol berukuran kecil */
+.btn-sm {
+  /* Mengurangi bantalan dalam tombol: 6px atas-bawah dan 14px kiri-kanan */
+  padding: 6px 14px;
+  /* Memperkecil ukuran font tombol */
+  font-size: 0.85rem;
+}
+
+/* Modifikasi tombol agar memanjang penuh */
+.btn-block {
+  /* Mengubah perilaku tombol menjadi elemen blok */
+  display: block;
+  /* Menjadikan lebar tombol 100% memenuhi wadahnya */
+  width: 100%;
+}
+
+/* --- 4. HEADER & NAVBAR (FLEXBOX) --- */
+/* Pembungkus navigasi bagian atas */
+.header {
+  /* Membuat header tetap menempel di atas layar saat halaman di-scroll */
+  position: sticky;
+  /* Posisi penempelan tepat di koordinat 0 piksel dari atas */
+  top: 0;
+  /* Latar belakang putih agar konten halaman di bawahnya tidak tembus pandang */
+  background-color: #ffffff;
+  /* Garis pembatas tipis di bagian bawah header */
+  border-bottom: 1px solid var(--border-color);
+  /* Memastikan header selalu berada di lapisan visual terdepan */
+  z-index: 100;
+}
+
+/* Wadah bar navigasi menggunakan Flexbox */
+.navbar {
+  /* Mengaktifkan sistem layout Flexbox */
+  display: flex;
+  /* Memisahkan logo ke pojok kiri dan daftar menu ke pojok kanan */
+  justify-content: space-between;
+  /* Menyejajarkan logo dan menu agar rata tengah secara vertikal */
+  align-items: center;
+  /* Membatasi lebar navigasi maksimal 1080 piksel */
+  max-width: 1080px;
+  /* Lebar navigasi mengambil 90% dari layar */
+  width: 90%;
+  /* Menempatkan posisi navbar di tengah layar */
+  margin: 0 auto;
+  /* Bantalan ruang atas dan bawah sebesar 16 piksel */
+  padding: 16px 0;
+}
+
+/* Teks logo website */
+.logo {
+  /* Ukuran font teks logo */
+  font-size: 1.4rem;
+  /* Ketebalan font logo dibuat tebal */
+  font-weight: 700;
+  /* Warna teks logo hitam pekat */
+  color: var(--text-dark);
+}
+
+/* Aksen teks di dalam logo */
+.logo span {
+  /* Memberi warna aksen biru primer pada sebagian kata logo */
+  color: var(--primary);
+}
+
+/* Wadah daftar menu navigasi */
+.nav-links {
+  /* Mengaktifkan Flexbox untuk menyejajarkan link menu ke samping */
+  display: flex;
+  /* Menghilangkan tanda titik (bullet list) bawaan tag ul */
+  list-style: none;
+  /* Memberikan jarak renggang otomatis 20 piksel antar tautan menu */
+  gap: 20px;
+}
+
+/* Teks tautan di dalam daftar menu */
+.nav-links a {
+  /* Warna teks tautan menu */
+  color: var(--text-body);
+  /* Ketebalan teks menu berbobot sedang (medium) */
+  font-weight: 500;
+}
+
+/* Efek saat teks menu disorot kursor mouse */
+.nav-links a:hover {
+  /* Mengubah warna tautan menu menjadi biru primer */
+  color: var(--primary);
+}
+
+/* --- 5. HERO SECTION (FLEXBOX) --- */
+/* Bagian profil utama di atas layar */
+.hero {
+  /* Mengaktifkan sistem layout Flexbox */
+  display: flex;
+  /* Menyejajarkan teks di kiri dan gambar di kanan secara vertikal tengah */
+  align-items: center;
+  /* Memisahkan ruang antara konten teks dan foto profil */
+  justify-content: space-between;
+  /* Membatasi lebar hero section maksimal 1080 piksel */
+  max-width: 1080px;
+  /* Lebar hero section mengambil 90% layar */
+  width: 90%;
+  /* Menempatkan hero section di tengah layar */
+  margin: 0 auto;
+  /* Memberikan ruang padding atas dan bawah sebesar 80 piksel */
+  padding: 80px 0;
+  /* Jarak pemisah antara kolom teks dan kolom foto sebesar 40 piksel */
+  gap: 40px;
+}
+
+/* Kolom pembungkus teks deskripsi hero */
+.hero-content {
+  /* Mengizinkan kolom teks tumbuh mengisi seluruh sisa ruang kosong yang tersedia */
+  flex: 1;
+}
+
+/* Teks sapaan pembuka di hero section */
+.greeting {
+  /* Ukuran font teks sapaan */
+  font-size: 1.1rem;
+  /* Warna teks sapaan menggunakan biru primer */
+  color: var(--primary);
+  /* Ketebalan huruf dibuat semi-tebal */
+  font-weight: 600;
+  /* Memberi jarak bawah 8 piksel sebelum nama besar */
+  margin-bottom: 8px;
+}
+
+/* Judul nama lengkap di hero section */
+.hero-title {
+  /* Ukuran font sangat besar untuk penekanan nama diri */
+  font-size: 2.8rem;
+  /* Ketebalan teks dibuat ekstra tebal */
+  font-weight: 800;
+  /* Jarak bawah 8 piksel sebelum baris subtitle */
+  margin-bottom: 8px;
+}
+
+/* Teks subjudul / profesi di hero section */
+.hero-subtitle {
+  /* Ukuran font subtitle */
+  font-size: 1.25rem;
+  /* Warna teks abu-abu pudar */
+  color: var(--text-muted);
+  /* Jarak bawah 16 piksel sebelum paragraf deskripsi */
+  margin-bottom: 16px;
+}
+
+/* Paragraf deskripsi ringkas diri */
+.hero-desc {
+  /* Ukuran font paragraf deskripsi */
+  font-size: 1.05rem;
+  /* Warna teks isi paragraf */
+  color: var(--text-body);
+  /* Membatasi lebar teks maksimal 520px agar kalimat tidak terlalu panjang ke kanan */
+  max-width: 520px;
+  /* Jarak bawah 24 piksel sebelum tombol aksi */
+  margin-bottom: 24px;
+}
+
+/* Wadah pembungkus tombol-tombol pada hero section */
+.hero-actions {
+  /* Mengaktifkan Flexbox untuk menyejajarkan tombol ke samping */
+  display: flex;
+  /* Memberi jarak pemisah 12 piksel antar tombol */
+  gap: 12px;
+}
+
+/* Kolom pembungkus foto profil */
+.hero-image {
+  /* Mencegah ukuran foto menyusut saat ruang layar mengecil */
+  flex-shrink: 0;
+}
+
+/* Elemen gambar foto profil */
+.hero-image img {
+  /* Menentukan lebar pasti foto profil 220 piksel */
+  width: 220px;
+  /* Menentukan tinggi pasti foto profil 220 piksel */
+  height: 220px;
+  /* Mengubah bentuk foto persegi menjadi lingkaran sempurna */
+  border-radius: 50%;
+  /* Garis bingkai melingkar warna biru primer setebal 4 piksel */
+  border: 4px solid var(--primary);
+  /* Memastikan proporsi foto pas di dalam lingkaran tanpa gepeng */
+  object-fit: cover;
+  /* Efek bayangan lembut di belakang foto profil */
+  box-shadow: var(--shadow);
+}
+
+/* --- 6. SECTION COMMONS --- */
+/* Standar bantalan ruang untuk setiap seksi halaman */
+.section {
+  /* Jarak vertikal 70 piksel di atas dan bawah setiap section */
+  padding: 70px 0;
+}
+
+/* Kelas utilitas untuk latar belakang seksi selang-seling */
+.bg-light {
+  /* Memberi warna latar abu-abu sangat muda */
+  background-color: var(--bg-light);
+}
+
+/* Judul utama pada setiap seksi */
+.section-title {
+  /* Ukuran font judul seksi */
+  font-size: 2rem;
+  /* Meratakan teks judul ke posisi tengah */
+  text-align: center;
+  /* Memberi jarak bawah 8 piksel sebelum subjudul seksi */
+  margin-bottom: 8px;
+}
+
+/* Subjudul penjelas pada setiap seksi */
+.section-subtitle {
+  /* Meratakan teks subjudul ke posisi tengah */
+  text-align: center;
+  /* Memberi warna teks abu-abu pudar */
+  color: var(--text-muted);
+  /* Memberi jarak bawah 40 piksel sebelum isi konten seksi dimulai */
+  margin-bottom: 40px;
+  /* Ukuran font subjudul */
+  font-size: 1rem;
+}
+
+/* --- 7. ABOUT ME --- */
+/* Kartu pembungkus cerita diri */
+.about-card {
+  /* Warna latar belakang putih untuk kartu */
+  background-color: var(--card-bg);
+  /* Garis batas tepi kartu tipis */
+  border: 1px solid var(--border-color);
+  /* Sudut kartu dibuat melengkung 8 piksel */
+  border-radius: var(--radius);
+  /* Ruang bantalan dalam sebesar 30 piksel di sekeliling teks */
+  padding: 30px;
+  /* Membatasi lebar kartu maksimal 760 piksel */
+  max-width: 760px;
+  /* Menempatkan posisi kartu tepat di tengah layar */
+  margin: 0 auto;
+  /* Memberikan efek bayangan halus pada kartu */
+  box-shadow: var(--shadow);
+}
+
+/* Paragraf di dalam kartu About Me */
+.about-card p {
+  /* Jarak bawah 14 piksel antar paragraf cerita */
+  margin-bottom: 14px;
+}
+
+/* Paragraf terakhir di dalam kartu About Me */
+.about-card p:last-child {
+  /* Menghapus jarak bawah pada paragraf paling akhir agar rapi */
+  margin-bottom: 0;
+}
+
+/* --- 8. CARDS GRID (EDUCATION & EXPERIENCE) --- */
+/* Wadah grid untuk kartu pendidikan dan pengalaman */
+.card-grid {
+  /* Mengaktifkan sistem layout Flexbox */
+  display: flex;
+  /* Mengizinkan kartu pindah ke baris berikutnya jika layar menyempit */
+  flex-wrap: wrap;
+  /* Memberikan jarak renggang 24 piksel antar kartu */
+  gap: 24px;
+}
+
+/* Masing-masing kartu di dalam grid */
+.card {
+  /* Menghitung lebar kartu menjadi 2 kolom (50% dikurangi jarak gap) */
+  flex: 1 1 calc(50% - 24px);
+  /* Lebar minimal kartu 280 piksel sebelum turun ke baris baru */
+  min-width: 280px;
+  /* Warna latar belakang kartu */
+  background-color: var(--card-bg);
+  /* Garis batas tipis di sekeliling kartu */
+  border: 1px solid var(--border-color);
+  /* Sudut melengkung kartu */
+  border-radius: var(--radius);
+  /* Bantalan ruang di dalam kartu sebesar 24 piksel */
+  padding: 24px;
+  /* Efek bayangan mengambang lembut */
+  box-shadow: var(--shadow);
+  /* Animasi transisi halus saat kartu merespons kursor */
+  transition: var(--transition);
+}
+
+/* Efek interaktif saat kartu disorot kursor mouse */
+.card:hover {
+  /* Mengangkat kartu 4 piksel ke atas */
+  transform: translateY(-4px);
+  /* Mempertegas bayangan kartu saat terangkat */
+  box-shadow: var(--shadow-hover);
+}
+
+/* Label penanda tahun pada kartu */
+.card-tag {
+  /* Mengizinkan penataan padding pada elemen teks penanda */
+  display: inline-block;
+  /* Ukuran font label kecil */
+  font-size: 0.75rem;
+  /* Ketebalan huruf semi-tebal */
+  font-weight: 600;
+  /* Warna teks label biru primer */
+  color: var(--primary);
+  /* Warna latar belakang label biru muda lembut */
+  background-color: #e0f2fe;
+  /* Bantalan ruang label: 3px atas-bawah dan 8px kiri-kanan */
+  padding: 3px 8px;
+  /* Lengkungan sudut label sebesar 4 piksel */
+  border-radius: 4px;
+  /* Jarak bawah 10 piksel sebelum judul kartu */
+  margin-bottom: 10px;
+}
+
+/* Judul posisi atau jurusan di dalam kartu */
+.card-title {
+  /* Ukuran font judul kartu */
+  font-size: 1.2rem;
+  /* Jarak bawah 4 piksel sebelum nama instansi */
+  margin-bottom: 4px;
+}
+
+/* Nama instansi atau organisasi */
+.card-org {
+  /* Ukuran font nama organisasi */
+  font-size: 0.95rem;
+  /* Ketebalan huruf sedang */
+  font-weight: 500;
+  /* Warna teks abu-abu pudar */
+  color: var(--text-muted);
+  /* Jarak bawah 10 piksel sebelum deskripsi */
+  margin-bottom: 10px;
+}
+
+/* Paragraf uraian di dalam kartu */
+.card-desc {
+  /* Ukuran font deskripsi */
+  font-size: 0.9rem;
+  /* Warna teks deskripsi */
+  color: var(--text-body);
+}
+
+/* --- 9. SKILLS GRID --- */
+/* Wadah grid untuk daftar keahlian */
+.skills-grid {
+  /* Mengaktifkan sistem layout Flexbox */
+  display: flex;
+  /* Mengizinkan item skill turun ke baris baru jika tidak muat */
+  flex-wrap: wrap;
+  /* Jarak renggang 16 piksel antar kotak skill */
+  gap: 16px;
+  /* Meratakan kotak-kotak skill ke posisi tengah */
+  justify-content: center;
+}
+
+/* Masing-masing kotak keahlian */
+.skill-item {
+  /* Menghitung lebar kartu skill menjadi 3 kolom (33.333% minus gap) */
+  flex: 1 1 calc(33.333% - 16px);
+  /* Lebar minimal kotak skill sebesar 200 piksel */
+  min-width: 200px;
+  /* Latar belakang kotak abu-abu sangat muda */
+  background-color: var(--bg-light);
+  /* Garis batas tipis */
+  border: 1px solid var(--border-color);
+  /* Sudut kotak dibuat melengkung */
+  border-radius: var(--radius);
+  /* Bantalan dalam: 16px atas-bawah dan 20px kiri-kanan */
+  padding: 16px 20px;
+  /* Teks diratakan di tengah kotak */
+  text-align: center;
+  /* Transisi halus saat warna berubah ketika disorot */
+  transition: var(--transition);
+}
+
+/* Efek saat kotak skill disorot kursor mouse */
+.skill-item:hover {
+  /* Mengubah garis batas menjadi biru primer */
+  border-color: var(--primary);
+  /* Mengubah latar belakang menjadi biru sangat muda */
+  background-color: #f0f9ff;
+}
+
+/* Nama keahlian (misal: HTML5, CSS3) */
+.skill-name {
+  /* Mengubah teks menjadi elemen blok baris mandiri */
+  display: block;
+  /* Ketebalan huruf dibuat tebal */
+  font-weight: 700;
+  /* Ukuran font nama keahlian */
+  font-size: 1.1rem;
+  /* Warna teks hitam gelap */
+  color: var(--text-dark);
+  /* Jarak bawah 4 piksel sebelum keterangan tingkat keahlian */
+  margin-bottom: 4px;
+}
+
+/* Keterangan level atau fokus keahlian */
+.skill-level {
+  /* Mengubah teks menjadi elemen blok baris mandiri */
+  display: block;
+  /* Ukuran font keterangan lebih kecil */
+  font-size: 0.85rem;
+  /* Warna teks abu-abu pudar */
+  color: var(--text-muted);
+}
+
+/* --- 10. PROJECTS GRID --- */
+/* Wadah grid untuk kartu-kartu proyek karya */
+.project-grid {
+  /* Mengaktifkan sistem layout Flexbox */
+  display: flex;
+  /* Mengizinkan kartu proyek turun ke baris bawahnya */
+  flex-wrap: wrap;
+  /* Jarak pemisah 24 piksel antar kartu proyek */
+  gap: 24px;
+}
+
+/* Masing-masing kartu proyek */
+.project-card {
+  /* Menghitung lebar kartu menjadi 2 kolom seimbang */
+  flex: 1 1 calc(50% - 24px);
+  /* Lebar minimal kartu proyek 280 piksel */
+  min-width: 280px;
+  /* Latar belakang kartu putih */
+  background-color: var(--card-bg);
+  /* Garis batas halus sekeliling kartu */
+  border: 1px solid var(--border-color);
+  /* Sudut kartu dibuat melengkung */
+  border-radius: var(--radius);
+  /* Memotong isi yang keluar batas agar sudut gambar ikut membulat */
+  overflow: hidden;
+  /* Efek bayangan mengambang lembut */
+  box-shadow: var(--shadow);
+  /* Transisi halus saat kartu merespons kursor mouse */
+  transition: var(--transition);
+  /* Mengaktifkan Flexbox di dalam kartu proyek */
+  display: flex;
+  /* Menyusun isi kartu ke arah vertikal (atas ke bawah) */
+  flex-direction: column;
+}
+
+/* Efek saat kartu proyek disorot kursor mouse */
+.project-card:hover {
+  /* Mengangkat kartu 4 piksel ke atas */
+  transform: translateY(-4px);
+  /* Mempertegas bayangan kartu saat terangkat */
+  box-shadow: var(--shadow-hover);
+}
+
+/* Gambar pratinjau proyek */
+.project-img {
+  /* Lebar gambar memenuhi 100% bagian atas kartu */
+  width: 100%;
+  /* Menentukan tinggi gambar tepat 180 piksel */
+  height: 180px;
+  /* Memastikan gambar terpotong proporsional tanpa gepeng */
+  object-fit: cover;
+  /* Warna cadangan abu-abu jika gambar sedang dimuat */
+  background-color: #f1f5f9;
+}
+
+/* Bagian teks keterangan di bawah gambar proyek */
+.project-body {
+  /* Bantalan ruang dalam sebesar 20 piksel */
+  padding: 20px;
+  /* Mengaktifkan Flexbox untuk menyusun isi deskripsi */
+  display: flex;
+  /* Menyusun isi secara vertikal */
+  flex-direction: column;
+  /* Mengisi seluruh sisa ruang kartu agar tinggi kartu seragam */
+  flex: 1;
+}
+
+/* Judul nama proyek */
+.project-title {
+  /* Ukuran font judul proyek */
+  font-size: 1.25rem;
+  /* Jarak bawah 8 piksel sebelum deskripsi */
+  margin-bottom: 8px;
+}
+
+/* Uraian penjelasan proyek */
+.project-desc {
+  /* Ukuran font uraian proyek */
+  font-size: 0.9rem;
+  /* Warna teks uraian proyek */
+  color: var(--text-body);
+  /* Jarak bawah 16 piksel sebelum label tag */
+  margin-bottom: 16px;
+  /* Mendorong label tag dan tombol ke bagian paling bawah kartu */
+  flex: 1;
+}
+
+/* Wadah label teknologi proyek */
+.project-tags {
+  /* Mengaktifkan Flexbox untuk menyusun tag ke samping */
+  display: flex;
+  /* Mengizinkan tag turun ke baris baru jika banyak */
+  flex-wrap: wrap;
+  /* Jarak renggang 6 piksel antar tag */
+  gap: 6px;
+  /* Jarak bawah 16 piksel sebelum tombol demo */
+  margin-bottom: 16px;
+}
+
+/* Label teknologi (badge) */
+.tag {
+  /* Ukuran font teks label kecil */
+  font-size: 0.75rem;
+  /* Warna latar belakang label abu-abu sangat muda */
+  background-color: #f1f5f9;
+  /* Warna teks label abu-abu */
+  color: var(--text-muted);
+  /* Bantalan ruang dalam: 3px atas-bawah dan 8px kiri-kanan */
+  padding: 3px 8px;
+  /* Sudut label dibuat melengkung 4 piksel */
+  border-radius: 4px;
+}
+
+/* --- 11. CONTACT SECTION (FORM + INFO) --- */
+/* Pembungkus utama bagian kontak (formulir + informasi sosmed) */
+.contact-wrapper {
+  /* Mengaktifkan sistem layout Flexbox */
+  display: flex;
+  /* Mengizinkan form dan info bertumpuk jika di layar sempit */
+  flex-wrap: wrap;
+  /* Jarak pemisah 32 piksel antara formulir dan info kontak */
+  gap: 32px;
+  /* Membatasi lebar area kontak maksimal 900 piksel */
+  max-width: 900px;
+  /* Menempatkan area kontak di tengah layar */
+  margin: 0 auto;
+}
+
+/* Kartu formulir kontak */
+.contact-form {
+  /* Menentukan lebar dasar form sekitar 420px dan dapat melebar */
+  flex: 1 1 420px;
+  /* Warna latar belakang formulir putih */
+  background-color: var(--card-bg);
+  /* Bantalan ruang di dalam formulir sebesar 28 piksel */
+  padding: 28px;
+  /* Sudut formulir dibuat melengkung */
+  border-radius: var(--radius);
+  /* Garis batas halus di sekeliling formulir */
+  border: 1px solid var(--border-color);
+  /* Efek bayangan lembut pada kotak formulir */
+  box-shadow: var(--shadow);
+}
+
+/* Kelompok baris input form */
+.form-group {
+  /* Jarak bawah 16 piksel antar kolom input formulir */
+  margin-bottom: 16px;
+}
+
+/* Label penjelas di atas kolom input */
+.form-group label {
+  /* Mengubah label menjadi elemen blok di atas kotak input */
+  display: block;
+  /* Ukuran font teks label */
+  font-size: 0.9rem;
+  /* Ketebalan teks label semi-tebal */
+  font-weight: 600;
+  /* Jarak bawah 6 piksel sebelum kotak input */
+  margin-bottom: 6px;
+  /* Warna teks label gelap */
+  color: var(--text-dark);
+}
+
+/* Kolom input teks dan area teks pesan */
+.form-group input,
+.form-group textarea {
+  /* Lebar kotak input memenuhi 100% wadah kolom */
+  width: 100%;
+  /* Bantalan ruang ketik: 10px atas-bawah dan 14px kiri-kanan */
+  padding: 10px 14px;
+  /* Garis batas tepi kotak input abu-abu halus */
+  border: 1px solid var(--border-color);
+  /* Lengkungan sudut kotak input sebesar 6 piksel */
+  border-radius: 6px;
+  /* Ukuran teks yang diketik pengguna */
+  font-size: 0.95rem;
+  /* Menyamakan jenis font dengan font halaman web */
+  font-family: inherit;
+  /* Warna teks ketikan pengguna */
+  color: var(--text-dark);
+  /* Animasi transisi halus saat kolom difokuskan */
+  transition: var(--transition);
+}
+
+/* Tampilan kotak input saat sedang diklik / diketik */
+.form-group input:focus,
+.form-group textarea:focus {
+  /* Menghilangkan garis outline hitam tebal bawaan browser */
+  outline: none;
+  /* Mengubah warna garis batas menjadi biru primer */
+  border-color: var(--primary);
+  /* Memberikan efek cincin cahaya biru muda transparan di sekitar kotak */
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+/* Kolom informasi tautan kontak di sebelah kanan formulir */
+.contact-info {
+  /* Lebar dasar kolom info kontak sekitar 300px dan dapat mengisi ruang */
+  flex: 1 1 300px;
+  /* Bantalan vertikal sebesar 20 piksel */
+  padding: 20px 0;
+}
+
+/* Judul pada bagian info kontak */
+.contact-info h3 {
+  /* Ukuran font judul info kontak */
+  font-size: 1.3rem;
+  /* Jarak bawah 12 piksel sebelum kalimat deskripsi */
+  margin-bottom: 12px;
+}
+
+/* Kalimat pembuka info kontak */
+.contact-info p {
+  /* Ukuran font kalimat info kontak */
+  font-size: 0.95rem;
+  /* Warna teks abu-abu pudar */
+  color: var(--text-muted);
+  /* Jarak bawah 20 piksel sebelum daftar kontak */
+  margin-bottom: 20px;
+}
+
+/* Daftar kontak yang bisa dihubungi */
+.contact-list {
+  /* Menghilangkan tanda titik (bullet) bawaan tag ul */
+  list-style: none;
+  /* Mengaktifkan Flexbox untuk menyusun baris kontak */
+  display: flex;
+  /* Menyusun daftar kontak secara vertikal (ke bawah) */
+  flex-direction: column;
+  /* Jarak renggang 12 piksel antar baris kontak */
+  gap: 12px;
+  /* Ukuran font daftar kontak */
+  font-size: 0.95rem;
+}
+
+/* Teks label tebal pada daftar kontak */
+.contact-list strong {
+  /* Memberi warna teks lebih gelap pada label */
+  color: var(--text-dark);
+}
+
+/* --- 12. FOOTER --- */
+/* Bagian penutup paling bawah website */
+.footer {
+  /* Warna latar belakang biru sangat gelap / malam */
+  background-color: #0f172a;
+  /* Warna teks hak cipta abu-abu terang */
+  color: #94a3b8;
+  /* Bantalan ruang atas dan bawah sebesar 24 piksel */
+  padding: 24px 0;
+  /* Meratakan teks ke posisi tengah */
+  text-align: center;
+  /* Ukuran font teks footer */
+  font-size: 0.85rem;
+}
+
+/* --- 13. RESPONSIVE / MEDIA QUERIES --- */
+/* Aturan khusus jika website dibuka pada layar berukuran maksimal 768 piksel (tablet / smartphone) */
+@media (max-width: 768px) {
+  /* Penyesuaian bar navigasi pada layar kecil */
+  .navbar {
+    /* Mengubah susunan logo dan menu menjadi berbaris ke bawah (vertikal) */
+    flex-direction: column;
+    /* Memberi jarak 12 piksel antara logo dan menu */
+    gap: 12px;
+  }
+
+  /* Penyesuaian daftar menu navigasi */
+  .nav-links {
+    /* Mengizinkan tautan menu turun ke baris baru jika tidak muat */
+    flex-wrap: wrap;
+    /* Meratakan menu tautan di posisi tengah layar ponsel */
+    justify-content: center;
+    /* Memberi jarak 12 piksel antar item menu */
+    gap: 12px;
+    /* Sedikit memperkecil ukuran font menu */
+    font-size: 0.9rem;
+  }
+
+  /* Penyesuaian hero section */
+  .hero {
+    /* Membalik urutan: foto profil di atas, teks sapaan di bawah */
+    flex-direction: column-reverse;
+    /* Meratakan teks perkenalan di posisi tengah */
+    text-align: center;
+    /* Mengurangi bantalan ruang vertikal menjadi 40 piksel */
+    padding: 40px 0;
+  }
+
+  /* Penyesuaian tombol-tombol pada hero section */
+  .hero-actions {
+    /* Menempatkan tombol aksi tepat di tengah layar */
+    justify-content: center;
+  }
+
+  /* Penyesuaian ukuran nama judul hero */
+  .hero-title {
+    /* Memperkecil ukuran font nama agar tidak terpotong di layar ponsel */
+    font-size: 2.2rem;
+  }
+
+  /* Penyesuaian kartu edukasi, proyek, dan keahlian */
+  .card, .project-card, .skill-item {
+    /* Mengubah lebar semua kartu menjadi 100% satu kolom penuh */
+    flex: 1 1 100%;
+  }
+
+  /* Penyesuaian area kontak */
+  .contact-wrapper {
+    /* Mengubah susunan form dan info kontak menjadi bertumpuk vertikal */
+    flex-direction: column;
+  }
+}
